@@ -27,6 +27,7 @@ const addBook= async (req, res) => {
     try {
         const book = await Book.create(req.body)
         res.json(book)
+        console.log(book)
     }
     catch (err) {
         console.log(err)}
