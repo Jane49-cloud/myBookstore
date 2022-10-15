@@ -5,6 +5,7 @@ const { getAllBooks, getBook, addBook, remove } = require("../handler/books");
 
 router.route('/').get(getAllBooks)
 router.route('/').post(addBook)
+router.route('/:id').delete(remove)
 
 
 

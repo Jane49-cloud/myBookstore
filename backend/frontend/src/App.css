@@ -36,3 +36,10 @@ display: flex;
 hr{
     width: 100%;
 }
+button {
+    margin: 10px;
+}
+button a{
+    text-decoration: none;
+    color:rgb(255, 255, 255)
+}

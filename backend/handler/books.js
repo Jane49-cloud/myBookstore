@@ -36,8 +36,10 @@ const addBook= async (req, res) => {
     //delete book
     const remove= async (req, res) => {
         try {
-            const book = await Book.findByIdAndRemove(req.params.id)
-            res.json(book)
+           const {id:bookID} = req.params
+           const book = await Book.findOneAndDelete({_id:bookID})
+           res.status(200).json({ book })
+            console.log(`${book} removed`)
         }
         catch (err) {
             console.log(err)}

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Axios from 'axios'
 
 export default function Books() {
     const [books, setBooks] = useState([])
@@ -21,9 +22,9 @@ export default function Books() {
   <div className='book_section'>
 {
   books.map((book) =>{
-    const { title, author, genre, id, image_url, buy_url, pages } = book
+    const { title, author, genre, _id, image_url, buy_url, pages } = book
     return(
-      <div className="book_card" key={id}>
+      <div className="book_card" key={_id}>
         <div className="image">
         <img src={image_url} alt={title} />
         </div>
@@ -37,10 +38,21 @@ export default function Books() {
        <h4> Author:  {author}</h4>
          </div>
          <div className="description">
-           <p> Genre: {genre} Collection</p>
+           <p> Genre: {genre} Collection</p> 
             </div>
-            <button className="btn">
+            <button className="btn btn-primary">
               <a href={buy_url}>Purchase</a>
+            </button>
+            <button className="btn btn-danger"
+            onClick={
+              async()=>{
+                const remove = await Axios.delete(`http://localhost:5000/api/v1/books/${_id}`)
+                const newBooks = books.filter((book) => book.id !== _id)
+                 setBooks(newBooks)
+                   }
+            }
+            >
+          Remove
             </button>
           </div>
 
